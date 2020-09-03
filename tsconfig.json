@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./lib",
+    "module": "ESNext",
+    "lib": [
+      // "DOM",
+      // "DOM.Iterable",
+      // "ESNext"
+    ],
+    "outDir": "./lib/",
+    "target": "es5",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "lib"]
+}
