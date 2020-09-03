@@ -45,8 +45,8 @@ type TextScrambleProps = {
 ### Defaults
 
 ```js
-letterSpeed = 50
+letterSpeed = 5
 nextLetterSpeed = 100
 paused = false
-pauseTime = 1000
+pauseTime = 1500
 ```
