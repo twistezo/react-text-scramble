@@ -1,6 +1,6 @@
 {
   "name": "@twistezo/react-text-scramble",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "React text scramble effect",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -38,5 +38,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typescript": "^4.0.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

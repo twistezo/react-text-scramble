@@ -7,10 +7,10 @@ const symbols: string[] = '!<>-_\\/[]{}—=+*^?#'.split('')
 const TextScramble: React.FC<TextScrambleProps> = ({
   texts,
   className,
-  letterSpeed = 50,
+  letterSpeed = 5,
   nextLetterSpeed = 100,
   paused = false,
-  pauseTime = 1000,
+  pauseTime = 1500,
 }) => {
   const [currentText, setCurrentText] = useState<string>(texts[0])
 
