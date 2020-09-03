@@ -5,8 +5,8 @@ import { randomItem, nextItem } from './utils'
 const symbols: string[] = '!<>-_\\/[]{}—=+*^?#'.split('')
 
 const TextScramble: React.FC<TextScrambleProps> = ({
-  className,
   texts,
+  className,
   letterSpeed = 50,
   nextLetterSpeed = 100,
   paused = false,
