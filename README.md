@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/dt/@twistezo/text-scramble)](https://www.npmjs.com/package/@twistezo/text-scramble)
+[![npm](https://img.shields.io/npm/dt/@twistezo/react-text-scramble)](https://www.npmjs.com/package/@twistezo/react-text-scramble)
 
 # React text scramble effect
 
