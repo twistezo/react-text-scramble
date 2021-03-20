@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/dt/@twistezo/text-scramble)](https://www.npmjs.com/package/@twistezo/text-scramble)
+
 # React text scramble effect
 
 - React & TypeScript component
