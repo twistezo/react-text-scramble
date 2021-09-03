@@ -1,6 +1,12 @@
-[![npm](https://img.shields.io/npm/dt/@twistezo/react-text-scramble)](https://www.npmjs.com/package/@twistezo/react-text-scramble)
+<div align="center">
 
 # React text scramble effect
+
+![](https://img.shields.io/npm/v/@twistezo/react-text-scramble?style=flat-square&color=9cf)
+![](https://img.shields.io/npm/dt/@twistezo/react-text-scramble?style=flat-square&color=9cf)
+![](https://img.shields.io/npm/l/@twistezo/react-text-scramble?style=flat-square&color=yellow)
+
+</div>
 
 - React & TypeScript component
 - lightweight package ~7kB
