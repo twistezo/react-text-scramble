@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.1] - 2026-02-05
+
+### Fixed
+
+- Vanilla has its own entry point under '@twistezo/react-text-scramble/vanilla' to avoid React imports
+
 ## [2.1.0] - 2026-02-05
 
 ### Added

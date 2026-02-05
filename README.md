@@ -57,7 +57,7 @@ const texts: ScrambleTexts = [
 ### Vanilla JS/TS
 
 ```ts
-import { createTextScramble } from '@twistezo/react-text-scramble'
+import { createTextScramble } from '@twistezo/react-text-scramble/vanilla'
 
 const el = document.getElementById('scramble')
 
