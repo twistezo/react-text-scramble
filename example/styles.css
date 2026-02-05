@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SF Mono', 'Fira Code', 'Monaco', monospace;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.scramble-effect {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #00d9ff;
+  text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  min-height: 4rem;
+}
+
+.controls {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: transparent;
+  border: 1px solid #00d9ff;
+  color: #00d9ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+button:hover {
+  background: #00d9ff;
+  color: #1a1a2e;
+}
+
+button.active {
+  background: #00d9ff;
+  color: #1a1a2e;
+}
+
+.info {
+  margin-top: 3rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.info code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+}

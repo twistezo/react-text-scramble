@@ -9,21 +9,34 @@
 </div>
 
 - React & TypeScript component
-- lightweight package ~7kB
+- Compatible with React 16.8+
+- ESM and CJS support
 
-## <a href="https://codesandbox.io/s/react-text-scramble-eyzqm">Live example</a>
+## Examples
+
+- Local example (required [Bun](https://bun.com/))
+
+```bash
+cd example
+bun install
+bun run dev
+open http://localhost:5173/
+```
+
+- [CodeSandbox](https://codesandbox.io/s/react-text-scramble-eyzqm)
 
 ## Setup
 
-```
+```bash
 npm install @twistezo/react-text-scramble
-or
-yarn add @twistezo/react-text-scramble
 ```
 
 ## Usage
 
-```jsx
+```tsx
+import TextScramble from '@twistezo/react-text-scramble'
+import type { ScrambleTexts } from '@twistezo/react-text-scramble'
+
 const texts: ScrambleTexts = [
   'lorem ipsum',
   'dolor sit amet',
@@ -33,28 +46,34 @@ const texts: ScrambleTexts = [
 <TextScramble texts={texts} />
 ```
 
-### Types and props
+### Props
 
-```js
-type ScrambleText = string
-
-type ScrambleTexts = ScrambleText[]
-
+```ts
 type TextScrambleProps = {
-  texts: ScrambleTexts
   className?: string
-  letterSpeed?: number // [ms]
-  nextLetterSpeed?: number // [ms]
-  paused?: boolean
-  pauseTime?: number // [ms]
+  letterSpeed?: number // Animation speed for each letter change [ms]
+  nextLetterSpeed?: number // Speed to reveal each letter [ms]
+  paused?: boolean // Pause/resume animation
+  pauseTime?: number // Delay between text changes [ms]
+  texts: ScrambleTexts
 }
 ```
 
 ### Defaults
 
-```js
-letterSpeed = 5
-nextLetterSpeed = 100
-paused = false
-pauseTime = 1500
+Defined in [src/constants.ts](./src/constants.ts):
+
+## Development
+
+```
+bun run example     # run examples
+bun run build       # build all formats
+
+bun run test        # run all tests
+bun run lint        # check lint
+bun run lint:fix    # fix lint & format
+bun run typecheck   # check types
+
+bunx npm login      # login to npm
+bun publish         # publish to npm
 ```

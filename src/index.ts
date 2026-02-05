@@ -1,4 +1,12 @@
 import TextScramble from './TextScramble'
-import { ScrambleText, ScrambleTexts, TextScrambleProps } from './types'
 
-export { TextScramble as default, ScrambleText, ScrambleTexts, TextScrambleProps }
+export {
+  DEFAULT_LETTER_SPEED,
+  DEFAULT_NEXT_LETTER_SPEED,
+  DEFAULT_PAUSE_TIME,
+  DEFAULT_PAUSED,
+  SYMBOLS,
+} from './constants'
+export type { ScrambleText, ScrambleTexts, TextScrambleProps } from './types'
+
+export { TextScramble as default, TextScramble }

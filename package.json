@@ -1,15 +1,9 @@
 {
   "name": "@twistezo/react-text-scramble",
-  "version": "1.0.6",
-  "description": "React text scramble effect",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/twistezo/react-text-scramble.git"
-  },
+  "version": "2.0.0",
   "author": "twistezo",
   "license": "MIT",
+  "description": "React text scramble effect",
   "keywords": [
     "text",
     "scramble",
@@ -17,29 +11,69 @@
     "react",
     "typescript"
   ],
+  "homepage": "https://github.com/twistezo/react-text-scramble",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twistezo/react-text-scramble.git"
+  },
   "bugs": {
     "url": "https://github.com/twistezo/react-text-scramble/issues"
   },
-  "homepage": "https://github.com/twistezo/react-text-scramble",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
-    "prepublish": "tsc"
+    "prebuild": "rm -rf dist",
+    "build": "bun run build:esm && bun run build:cjs && bun run build:types",
+    "build:esm": "bun build src/index.ts --outdir dist/esm --format esm --external react --external react-dom",
+    "build:cjs": "bun build src/index.ts --outdir dist/cjs --format cjs --external react --external react-dom",
+    "build:types": "bun run tsc --emitDeclarationOnly",
+    "postbuild": "mv dist/cjs/index.js dist/cjs/index.cjs && mv dist/esm/index.js dist/esm/index.mjs",
+    "test": "bun test",
+    "test:integration": "bun run test:integration:esm && bun run test:integration:cjs",
+    "test:integration:esm": "bun run build && bun tests/integration/test-dist-esm.mjs",
+    "test:integration:cjs": "bun run build && node tests/integration/test-dist-cjs.cjs",
+    "lint": "bun run eslint src tests --ext ts,tsx",
+    "lint:fix": "bun run eslint src tests --ext ts,tsx --fix",
+    "typecheck": "bun run tsc --noEmit",
+    "prepublishOnly": "bun run test && bun run lint && bun run typecheck && bun run build",
+    "example": "cd example/ && bun install && bun run dev"
+  },
+  "peerDependencies": {
+    "react": ">=16.8",
+    "typescript": ">=4.7"
   },
   "devDependencies": {
-    "@types/node": "^14.6.4",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "eslint": "^7.8.1",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.0",
-    "prettier": "^2.1.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "typescript": "^4.0.2"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "@eslint/js": "^9.39.2",
+    "@happy-dom/global-registrator": "^17.4.4",
+    "@testing-library/react": "^16.2.0",
+    "@types/bun": "latest",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-perfectionist": "^5.4.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^16.2.0",
+    "prettier": "^3.8.1",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript-eslint": "^8.53.1"
   }
 }

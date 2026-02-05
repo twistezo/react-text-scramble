@@ -1,80 +1,117 @@
-import React, { useState, useEffect } from 'react'
-import { TextScrambleProps } from './types'
-import { randomItem, nextItem } from './utils'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-const symbols: string[] = '!<>-_\\/[]{}—=+*^?#'.split('')
+import type { TextScrambleProps } from './types'
+
+import {
+  DEFAULT_LETTER_SPEED,
+  DEFAULT_NEXT_LETTER_SPEED,
+  DEFAULT_PAUSE_TIME,
+  DEFAULT_PAUSED,
+  SYMBOLS,
+} from './constants'
+import { nextItem, randomItem } from './utils'
 
 const TextScramble: React.FC<TextScrambleProps> = ({
-  texts,
   className,
-  letterSpeed = 5,
-  nextLetterSpeed = 100,
-  paused = false,
-  pauseTime = 1500,
+  letterSpeed = DEFAULT_LETTER_SPEED,
+  nextLetterSpeed = DEFAULT_NEXT_LETTER_SPEED,
+  paused = DEFAULT_PAUSED,
+  pauseTime = DEFAULT_PAUSE_TIME,
+  texts,
 }) => {
   const [currentText, setCurrentText] = useState<string>(texts[0])
+  const [displayedText, setDisplayedText] = useState<string[]>([])
 
-  const initSymbols: string[] = Array(currentText.length)
-    .fill(0)
-    .map(() => randomItem(symbols))
+  const bakeLetterIntervalRef = useRef<null | ReturnType<typeof setInterval>>(null)
+  const bakeTextIntervalRef = useRef<null | ReturnType<typeof setInterval>>(null)
+  const pauseTimeoutRef = useRef<null | ReturnType<typeof setTimeout>>(null)
+  const leftIndexesRef = useRef<number[]>([])
+  const pausedRef = useRef(paused)
 
-  const [displayedText, setDisplayedText] = useState<string[]>(initSymbols)
+  useEffect(() => {
+    pausedRef.current = paused
+    if (paused && pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current)
+      pauseTimeoutRef.current = null
+    }
+  }, [paused])
 
-  const leftIndexes: number[] = []
+  const initSymbols = useMemo(
+    () =>
+      Array(currentText.length)
+        .fill(0)
+        .map(() => randomItem(SYMBOLS)),
+    [currentText.length],
+  )
 
-  const defaultLeftIndexes = (): void => {
-    currentText.split('').forEach((_, i) => {
-      leftIndexes.push(i)
-    })
-  }
+  useEffect(() => {
+    setDisplayedText(initSymbols)
+  }, [initSymbols])
 
-  let bakeLetterInterval: any = 0
-  let bakeTextInterval: any = 0
+  const clearAllIntervals = useCallback(() => {
+    if (bakeLetterIntervalRef.current) {
+      clearInterval(bakeLetterIntervalRef.current)
+      bakeLetterIntervalRef.current = null
+    }
+    if (bakeTextIntervalRef.current) {
+      clearInterval(bakeTextIntervalRef.current)
+      bakeTextIntervalRef.current = null
+    }
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current)
+      pauseTimeoutRef.current = null
+    }
+  }, [])
 
-  const bakeLetter = () => {
-    bakeLetterInterval = setInterval(() => {
-      if (!paused) {
+  const bakeLetter = useCallback(() => {
+    bakeLetterIntervalRef.current = setInterval(() => {
+      if (!pausedRef.current) {
         const updatedText: string[] = []
+        const leftIndexes = leftIndexesRef.current
 
-        currentText.split('').forEach((_, i) => {
+        currentText.split('').forEach((char, i) => {
           if (!leftIndexes.includes(i)) {
             updatedText[i] = currentText[i]
             return
           }
-
-          const randomSymbol = randomItem(symbols)
-          updatedText[i] = randomSymbol
+          updatedText[i] = randomItem(SYMBOLS)
         })
 
         setDisplayedText(updatedText)
       }
     }, letterSpeed)
-  }
+  }, [currentText, letterSpeed])
 
-  const bakeText = () => {
-    defaultLeftIndexes()
+  const bakeText = useCallback(() => {
+    leftIndexesRef.current = currentText.split('').map((_, i) => i)
+
     bakeLetter()
 
-    bakeTextInterval = setInterval(() => {
-      if (!paused) {
-        if (leftIndexes.length === 0) {
-          clearInterval(bakeLetterInterval)
-          clearInterval(bakeTextInterval)
+    bakeTextIntervalRef.current = setInterval(() => {
+      if (!pausedRef.current) {
+        if (leftIndexesRef.current.length === 0) {
+          clearAllIntervals()
 
-          setTimeout(() => {
+          pauseTimeoutRef.current = setTimeout(() => {
             setCurrentText(nextItem(texts, currentText))
-            defaultLeftIndexes()
           }, pauseTime)
+          return
         }
 
-        leftIndexes.shift()
+        leftIndexesRef.current.shift()
       }
     }, nextLetterSpeed)
-  }
+  }, [bakeLetter, clearAllIntervals, currentText, nextLetterSpeed, pauseTime, texts])
 
   useEffect(() => {
-    if (!paused) bakeText()
-  }, [currentText, paused]) // eslint-disable-line react-hooks/exhaustive-deps
+    if (!paused) {
+      bakeText()
+    }
+
+    return () => {
+      clearAllIntervals()
+    }
+  }, [bakeText, clearAllIntervals, paused])
 
   return <div className={className}>{displayedText}</div>
 }
