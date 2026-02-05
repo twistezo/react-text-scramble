@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla JS Text Scramble - Example</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Vanilla JS Text Scramble</h1>
+
+      <div class="demo-section">
+        <h2>Function API</h2>
+        <div id="demo-function" class="scramble-box"></div>
+        <div class="controls">
+          <button id="btn-function-play">Play</button>
+          <button id="btn-function-pause">Pause</button>
+          <button id="btn-function-reset">Reset</button>
+        </div>
+      </div>
+
+      <div class="demo-section">
+        <h2>Class API</h2>
+        <div id="demo-class" class="scramble-box"></div>
+        <div class="controls">
+          <button id="btn-class-play">Play</button>
+          <button id="btn-class-pause">Pause</button>
+          <button id="btn-class-reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { createTextScramble, TextScrambleAnimator } from '@twistezo/react-text-scramble'
+
+      const functionTexts = ['Vanilla JS', 'Control with Function API']
+
+      const classTexts = ['Vanilla JS', 'Control with Class API']
+
+      const demoFunctionElement = document.getElementById('demo-function')
+      const functionAnimator = createTextScramble(demoFunctionElement, {
+        texts: functionTexts,
+        letterSpeed: 10,
+        nextLetterSpeed: 100,
+        pauseTime: 1000,
+      })
+
+      document.getElementById('btn-function-play')?.addEventListener('click', () => {
+        functionAnimator.play()
+      })
+
+      document.getElementById('btn-function-pause')?.addEventListener('click', () => {
+        functionAnimator.pause()
+      })
+
+      document.getElementById('btn-function-reset')?.addEventListener('click', () => {
+        functionAnimator.reset()
+      })
+
+      const demoClassElement = document.getElementById('demo-class')
+      const classAnimator = new TextScrambleAnimator(demoClassElement, {
+        texts: classTexts,
+        letterSpeed: 10,
+        nextLetterSpeed: 100,
+        pauseTime: 1000,
+      })
+
+      document.getElementById('btn-class-play')?.addEventListener('click', () => {
+        classAnimator.play()
+      })
+
+      document.getElementById('btn-class-pause')?.addEventListener('click', () => {
+        classAnimator.pause()
+      })
+
+      document.getElementById('btn-class-reset')?.addEventListener('click', () => {
+        classAnimator.reset()
+      })
+    </script>
+  </body>
+</html>

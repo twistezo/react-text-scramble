@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.1.0] - 2026-02-05
+
+### Added
+
+- Vanilla JS/TS support with class and function APIs
+- Vanilla JS example
+
+### Changed
+
+- React component refactored to use `TextScrambleAnimator` internally
+
+### Fixed
+
+- Pause/play bug where paused prop was recreating animator instead of pausing animation state
+
 ## [2.0.0] - 2026-02-05
 
 ### Added

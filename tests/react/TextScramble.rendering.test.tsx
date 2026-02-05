@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'bun:test'
 
-import TextScramble from '../src/TextScramble'
+import TextScramble from '../../src/TextScramble'
 
 describe('TextScramble - Rendering', () => {
   afterEach(() => {

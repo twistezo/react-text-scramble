@@ -4,6 +4,8 @@ import TextScramble from '@twistezo/react-text-scramble'
 import { useState } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import '../styles.css'
+
 const texts: ScrambleTexts = [
   'Hello World',
   'React Text Scramble',
@@ -55,12 +57,6 @@ function App() {
         <button className={speed === 'fast' ? 'active' : ''} onClick={() => setSpeed('fast')}>
           Fast
         </button>
-      </div>
-
-      <div className='info'>
-        <p>
-          Install: <code>npm install @twistezo/react-text-scramble</code>
-        </p>
       </div>
     </div>
   )

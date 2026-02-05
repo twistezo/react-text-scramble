@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const { default: DefaultExport, TextScramble } = require('../../dist/cjs/index.cjs')
 
+console.log('\n---> test-dist-cjs.cjs')
+
 console.log('CJS named export:', typeof TextScramble === 'function')
 console.log('CJS default export:', typeof DefaultExport === 'function')
 console.log('Exports match:', TextScramble === DefaultExport)

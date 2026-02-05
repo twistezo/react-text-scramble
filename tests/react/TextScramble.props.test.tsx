@@ -1,7 +1,7 @@
 import { act, cleanup, render } from '@testing-library/react'
 import { afterEach, describe, expect, it, mock } from 'bun:test'
 
-import TextScramble from '../src/TextScramble'
+import TextScramble from '../../src/TextScramble'
 
 describe('TextScramble - Props Respect', () => {
   afterEach(() => {

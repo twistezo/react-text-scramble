@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 
-import { nextItem, randomItem } from '../src/utils'
+import { nextItem, randomItem } from '../../src/utils'
 
 describe('randomItem', () => {
   it('returns an element from the array', () => {

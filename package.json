@@ -1,6 +1,6 @@
 {
   "name": "@twistezo/react-text-scramble",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "author": "twistezo",
   "license": "MIT",
   "description": "React text scramble effect",
@@ -43,15 +43,14 @@
     "build:cjs": "bun build src/index.ts --outdir dist/cjs --format cjs --external react --external react-dom",
     "build:types": "bun run tsc --emitDeclarationOnly",
     "postbuild": "mv dist/cjs/index.js dist/cjs/index.cjs && mv dist/esm/index.js dist/esm/index.mjs",
-    "test": "bun test",
-    "test:integration": "bun run test:integration:esm && bun run test:integration:cjs",
-    "test:integration:esm": "bun run build && bun tests/integration/test-dist-esm.mjs",
-    "test:integration:cjs": "bun run build && node tests/integration/test-dist-cjs.cjs",
-    "lint": "bun run eslint src tests --ext ts,tsx",
-    "lint:fix": "bun run eslint src tests --ext ts,tsx --fix",
+    "health-check": "bun run lint && bun run typecheck && bun run test && bun run build",
+    "lint": "bun run eslint src tests --ext cjs,mjs,ts,tsx",
     "typecheck": "bun run tsc --noEmit",
+    "test": "bun test && bun run test:integration",
+    "test:integration": "bun run build && for f in tests/integration/*; do bun run $f; done",
     "prepublishOnly": "bun run test && bun run lint && bun run typecheck && bun run build",
-    "example": "cd example/ && bun install && bun run dev"
+    "example:react": "cd example/react && bun install && bun run dev",
+    "example:vanilla": "bun run example/vanilla/index.html"
   },
   "peerDependencies": {
     "react": ">=16.8",

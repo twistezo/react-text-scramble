@@ -1,5 +1,7 @@
 import { TextScramble } from '../../dist/esm/index.mjs'
 
+console.log('\n---> test-dist-esm.mjs')
+
 console.log('ESM default export:', typeof TextScramble === 'function')
 console.log('ESM named export:', typeof TextScramble === 'function')
 console.log('Component name:', TextScramble.name === 'TextScramble')

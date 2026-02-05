@@ -17,6 +17,8 @@ body {
 .container {
   text-align: center;
   padding: 2rem;
+  max-width: 800px;
+  width: 100%;
 }
 
 h1 {
@@ -28,12 +30,48 @@ h1 {
   letter-spacing: 0.2em;
 }
 
+h2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #00d9ff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* React example */
 .scramble-effect {
   font-size: 3rem;
   font-weight: 700;
   color: #00d9ff;
   text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
   min-height: 4rem;
+}
+
+/* Vanilla example */
+.demo-section {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #00d9ff20;
+}
+
+.demo-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.scramble-box {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #00d9ff;
+  text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .controls {
@@ -62,6 +100,7 @@ button:hover {
   color: #1a1a2e;
 }
 
+button:active,
 button.active {
   background: #00d9ff;
   color: #1a1a2e;
@@ -77,4 +116,41 @@ button.active {
   background: rgba(255, 255, 255, 0.1);
   padding: 0.2em 0.5em;
   border-radius: 3px;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .scramble-effect,
+  .scramble-box {
+    font-size: 2rem;
+    min-height: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .controls {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  button {
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
 }
