@@ -59,7 +59,7 @@ function App() {
 
       <div className='info'>
         <p>
-          Install: <code>bun add @twistezo/react-text-scramble</code>
+          Install: <code>npm install @twistezo/react-text-scramble</code>
         </p>
       </div>
     </div>

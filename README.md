@@ -23,7 +23,7 @@ bun run dev
 open http://localhost:5173/
 ```
 
-- [CodeSandbox](https://codesandbox.io/s/react-text-scramble-eyzqm)
+- [CodeSandbox](https://codesandbox.io/p/sandbox/react-text-scramble-cchcm2)
 
 ## Setup
 
